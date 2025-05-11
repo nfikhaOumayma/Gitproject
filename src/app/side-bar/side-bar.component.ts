@@ -1,24 +1,77 @@
 import { Component } from '@angular/core';
-import { SidebarModule } from 'primeng/sidebar';
-import { ButtonModule } from 'primeng/button';
-import { RippleModule } from 'primeng/ripple';
+import { MenubarModule } from 'primeng/menubar';
+import { BadgeModule } from 'primeng/badge';
 import { AvatarModule } from 'primeng/avatar';
-import { StyleClassModule } from 'primeng/styleclass';
-import { Sidebar } from 'primeng/sidebar';
-import { ViewChild } from '@angular/core';
+import { InputTextModule } from 'primeng/inputtext';
+import { CommonModule } from '@angular/common';
+import { RippleModule } from 'primeng/ripple';
+import { MenuItem } from 'primeng/api';
+
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.css'],
   standalone: true,
-  imports: [SidebarModule, ButtonModule, RippleModule, AvatarModule, StyleClassModule]
+  imports: [MenubarModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, CommonModule]
 })
 export class SideBarComponent {
-  @ViewChild('sidebarRef') sidebarRef!: Sidebar;
+  items: MenuItem[] | undefined;
 
-    closeCallback(e:any): void {
-        this.sidebarRef.close(e);
+    ngOnInit() {
+        this.items = [
+            {
+                label: 'Home',
+                icon: 'pi pi-home'
+            },
+            {
+                label: 'Features',
+                icon: 'pi pi-star'
+            },
+            {
+                label: 'Projects',
+                icon: 'pi pi-search',
+                items: [
+                    {
+                        label: 'Core',
+                        icon: 'pi pi-bolt',
+                        shortcut: '⌘+S'
+                    },
+                    {
+                        label: 'Blocks',
+                        icon: 'pi pi-server',
+                        shortcut: '⌘+B'
+                    },
+                    {
+                        label: 'UI Kit',
+                        icon: 'pi pi-pencil',
+                        shortcut: '⌘+U'
+                    },
+                    {
+                        separator: true
+                    },
+                    {
+                        label: 'Templates',
+                        icon: 'pi pi-palette',
+                        items: [
+                            {
+                                label: 'Apollo',
+                                icon: 'pi pi-palette',
+                                badge: '2'
+                            },
+                            {
+                                label: 'Ultima',
+                                icon: 'pi pi-palette',
+                                badge: '3'
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                label: 'Contact',
+                icon: 'pi pi-envelope',
+                badge: '3'
+            }
+        ];
     }
-
-    sidebarVisible: boolean = false;
 }
