@@ -1,12 +1,37 @@
 <p-toast></p-toast>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div class="p-field">
-    <label for="email">Email:</label>
-    <input id="email" pInputText formControlName="email" required />
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+  <div class="bg-white shadow-lg rounded-lg p-8 w-96">
+    <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="space-y-4">
+        <div class="p-field">
+          <label for="email" class="block font-medium mb-1">Email:</label>
+          <input
+            id="email"
+            pInputText
+            formControlName="email"
+            class="border border-gray-300 rounded w-full p-2"
+            required
+          />
+        </div>
+        <div class="p-field">
+          <label for="password" class="block font-medium mb-1">Password:</label>
+          <input
+            id="password"
+            pInputText
+            formControlName="password"
+            type="password"
+            class="border border-gray-300 rounded w-full p-2"
+            required
+          />
+        </div>
+        <button
+          pButton
+          type="submit"
+          label="Login"
+          class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+        ></button>
+      </div>
+    </form>
   </div>
-  <div class="p-field">
-    <label for="password">Password:</label>
-    <input id="password" pInputText formControlName="password" type="password" required />
-  </div>
-  <button pButton type="submit" label="Login"></button>
-</form>
+</div>

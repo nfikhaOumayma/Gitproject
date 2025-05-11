@@ -15,10 +15,10 @@ export interface LogIn {
 export class AuthService {
 
   constructor(private http : HttpClient ) { }
-  private apiUrl = 'http://localhost:8081/api/auth';
+  private apiUrl = 'http://localhost:8088/api/auth';
 
   SignUpAdmin(user : User):Observable<User>{
-    return this.http.post<User>('http://localhost:8081/api/auth/signupadmin', user);
+    return this.http.post<User>('http://localhost:8088/api/auth/signupadmin', user);
   }
 
   signIn(login: LogIn): Observable<JwtResponse> {
