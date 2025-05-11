@@ -3,33 +3,41 @@
   <div class="bg-white shadow-lg rounded-lg p-8 w-96">
     <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="space-y-4">
-        <div class="p-field">
-          <label for="email" class="block font-medium mb-1">Email:</label>
+      <div class="space-y-6">
+        <div
+          class="p-field flex items-center border border-gray-300 rounded-lg focus-within:border-orange-500 hover:border-orange-500"
+        >
+          <i class="pi pi-envelope text-blue-500 text-2xl p-2"></i>
           <input
             id="email"
             pInputText
             formControlName="email"
-            class="border border-gray-300 rounded w-full p-2"
+            class="w-full p-2 focus:outline-none rounded-lg"
+            placeholder="Enter your email"
             required
           />
         </div>
-        <div class="p-field">
-          <label for="password" class="block font-medium mb-1">Password:</label>
+
+        <div
+          class="p-field flex items-center border border-gray-300 rounded-lg focus-within:border-orange-500 hover:border-orange-500"
+        >
+          <i class="pi pi-lock text-blue-500 text-2xl p-2"></i>
           <input
             id="password"
             pInputText
             formControlName="password"
             type="password"
-            class="border border-gray-300 rounded w-full p-2"
+            class="w-full p-2 focus:outline-none rounded-lg"
+            placeholder="Enter your password"
             required
           />
         </div>
+
         <button
           pButton
           type="submit"
           label="Login"
-          class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+          class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
         ></button>
       </div>
     </form>
