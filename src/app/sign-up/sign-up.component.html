@@ -1,0 +1,47 @@
+<p-toast></p-toast>
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+  <div class="p-field">
+    <label for="name">Name:</label>
+    <input id="name" pInputText formControlName="name" required />
+  </div>
+
+  <div class="p-field">
+    <label for="username">Username:</label>
+    <input id="username" pInputText formControlName="username" required />
+  </div>
+
+  <div class="p-field">
+    <label for="email">Email:</label>
+    <input id="email" pInputText formControlName="email" type="email" required />
+  </div>
+
+  <div class="p-field">
+    <label for="password">Password:</label>
+    <input id="password" pInputText formControlName="password" type="password" required />
+  </div>
+
+  <div class="p-field">
+    <label for="address">Address:</label>
+    <input id="address" pInputText formControlName="address" required />
+  </div>
+
+  <div class="p-field">
+    <label for="number">Number:</label>
+    <p-inputNumber id="number" formControlName="number"></p-inputNumber>
+  </div>
+<!-- 
+  <div class="p-field-checkbox">
+    <p-checkbox formControlName="blocked" label="Blocked"></p-checkbox>
+  </div>
+
+  <div class="p-field-checkbox">
+    <p-checkbox formControlName="valid" label="Valid"></p-checkbox>
+  </div>
+
+  <div class="p-field">
+    <label for="role">Role:</label>
+    <p-dropdown [options]="roles" formControlName="role" placeholder="Select a role" ></p-dropdown>
+  </div> -->
+
+  <button pButton type="submit" label="Sign Up"></button>
+</form>

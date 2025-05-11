@@ -1,0 +1,12 @@
+<p-toast></p-toast>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="p-field">
+    <label for="email">Email:</label>
+    <input id="email" pInputText formControlName="email" required />
+  </div>
+  <div class="p-field">
+    <label for="password">Password:</label>
+    <input id="password" pInputText formControlName="password" type="password" required />
+  </div>
+  <button pButton type="submit" label="Login"></button>
+</form>
