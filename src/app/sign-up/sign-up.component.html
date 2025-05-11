@@ -1,47 +1,100 @@
 <p-toast></p-toast>
-<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-  <div class="p-field">
-    <label for="name">Name:</label>
-    <input id="name" pInputText formControlName="name" required />
-  </div>
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+  <div class="bg-white shadow-lg rounded-lg p-8 w-96">
+    <h2 class="text-2xl font-bold text-center mb-6 text-blue-400">Sign Up</h2>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      <div class="space-y-6">
+        <div
+          class="p-field flex items-center border border-gray-300 rounded-lg focus-within:border-orange-500 hover:border-orange-500"
+        >
+          <i class="pi pi-user text-blue-400 text-2xl p-2"></i>
+          <input
+            class="w-full p-2 focus:outline-none rounded-lg"
+            id="name"
+            pInputText
+            formControlName="name"
+            placeholder="Enter your name"
+            required
+          />
+        </div>
 
-  <div class="p-field">
-    <label for="username">Username:</label>
-    <input id="username" pInputText formControlName="username" required />
-  </div>
+        <div
+          class="p-field flex items-center border border-gray-300 rounded-lg focus-within:border-orange-500 hover:border-orange-500"
+        >
+          <i class="pi pi-id-card text-blue-400 text-2xl p-2"></i>
+          <input
+            class="w-full p-2 focus:outline-none rounded-lg"
+            id="username"
+            pInputText
+            formControlName="username"
+            placeholder="Enter your username"
+            required
+          />
+        </div>
 
-  <div class="p-field">
-    <label for="email">Email:</label>
-    <input id="email" pInputText formControlName="email" type="email" required />
-  </div>
+        <div
+          class="p-field flex items-center border border-gray-300 rounded-lg focus-within:border-orange-500 hover:border-orange-500"
+        >
+          <i class="pi pi-envelope text-blue-400 text-2xl p-2"></i>
+          <input
+            class="w-full p-2 focus:outline-none rounded-lg"
+            id="email"
+            pInputText
+            formControlName="email"
+            type="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
 
-  <div class="p-field">
-    <label for="password">Password:</label>
-    <input id="password" pInputText formControlName="password" type="password" required />
-  </div>
+        <div
+          class="p-field flex items-center border border-gray-300 rounded-lg focus-within:border-orange-500 hover:border-orange-500"
+        >
+          <i class="pi pi-lock text-blue-400 text-2xl p-2"></i>
+          <input
+            class="w-full p-2 focus:outline-none rounded-lg"
+            id="password"
+            pInputText
+            formControlName="password"
+            type="password"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
 
-  <div class="p-field">
-    <label for="address">Address:</label>
-    <input id="address" pInputText formControlName="address" required />
-  </div>
+        <div
+          class="p-field flex items-center border border-gray-300 rounded-lg focus-within:border-orange-500 hover:border-orange-500"
+        >
+          <i class="pi pi-map-marker text-blue-400 text-2xl p-2"></i>
+          <input
+            class="w-full p-2 focus:outline-none rounded-lg"
+            id="address"
+            pInputText
+            formControlName="address"
+            placeholder="Enter your address"
+            required
+          />
+        </div>
 
-  <div class="p-field">
-    <label for="number">Number:</label>
-    <p-inputNumber id="number" formControlName="number"></p-inputNumber>
-  </div>
-<!-- 
-  <div class="p-field-checkbox">
-    <p-checkbox formControlName="blocked" label="Blocked"></p-checkbox>
-  </div>
+        <div
+          class="p-field flex items-center border border-gray-300 rounded-lg focus-within:border-orange-500 hover:border-orange-500"
+        >
+          <i class="pi pi-phone text-blue-400 text-2xl p-2"></i>
+          <input
+            class="w-full p-2 focus:outline-none rounded-lg"
+            id="number"
+            formControlName="number"
+            placeholder="Enter your phone number"
+          />
+        </div>
 
-  <div class="p-field-checkbox">
-    <p-checkbox formControlName="valid" label="Valid"></p-checkbox>
+        <button
+          pButton
+          type="submit"
+          label="Sign Up"
+          class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+        ></button>
+      </div>
+    </form>
   </div>
-
-  <div class="p-field">
-    <label for="role">Role:</label>
-    <p-dropdown [options]="roles" formControlName="role" placeholder="Select a role" ></p-dropdown>
-  </div> -->
-
-  <button pButton type="submit" label="Sign Up"></button>
-</form>
+</div>
