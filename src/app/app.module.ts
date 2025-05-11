@@ -21,6 +21,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { LogInComponent } from './log-in/log-in.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+
 import { RippleModule } from 'primeng/ripple';
 import { AvatarModule } from 'primeng/avatar';
 
