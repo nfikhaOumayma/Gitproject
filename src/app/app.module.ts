@@ -20,7 +20,9 @@ import { PasswordModule } from 'primeng/password';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { LogInComponent } from './log-in/log-in.component';
-import { SideBarComponent } from './side-bar/side-bar.component'; // Importing as standalone
+import { SideBarComponent } from './side-bar/side-bar.component';
+import { RippleModule } from 'primeng/ripple';
+import { AvatarModule } from 'primeng/avatar';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { SideBarComponent } from './side-bar/side-bar.component'; // Importing a
     PasswordModule,
     DialogModule,
     ConfirmDialogModule,
-    SideBarComponent // Add here instead of declarations
+    SideBarComponent,
+    RippleModule,   
+    AvatarModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
