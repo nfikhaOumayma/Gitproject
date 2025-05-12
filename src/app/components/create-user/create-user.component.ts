@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/core/models/user';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { MessageService } from 'primeng/api';
-import { RoleService } from '../services/role.service';
+import { RoleService } from '../../../core/services/role.service';
 import { Role } from 'src/core/models/role';
 import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
 import { ToastModule } from 'primeng/toast'; // Import ToastModule

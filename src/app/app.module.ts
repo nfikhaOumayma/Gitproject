@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -19,10 +19,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { PasswordModule } from 'primeng/password';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { LogInComponent } from './log-in/log-in.component';
-import { SideBarComponent } from './side-bar/side-bar.component';
+import { LogInComponent } from './components/log-in/log-in.component';
+import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './services/auth-interceptor.service'; // Update the path as needed
+import { AuthInterceptor } from '../core/services/auth-interceptor.service'; // Update the path as needed
 
 import { RippleModule } from 'primeng/ripple';
 import { AvatarModule } from 'primeng/avatar';
@@ -32,7 +32,7 @@ import { CommonModule } from '@angular/common';
   declarations: [
     AppComponent,
     SignUpComponent,
-    LogInComponent
+    // LogInComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +56,8 @@ import { CommonModule } from '@angular/common';
     SideBarComponent,
     RippleModule,   
     AvatarModule,
-    CommonModule 
+    CommonModule,
+    LogInComponent
   ],
   providers: [
     MessageService, 

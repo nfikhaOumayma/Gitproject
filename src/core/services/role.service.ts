@@ -13,7 +13,7 @@ export class RoleService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getAllRoles(): Observable<Role[]> {
-    const token = this.authService.getToken(); // Get the token from AuthService
+    const token = this.authService.getToken(); 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
