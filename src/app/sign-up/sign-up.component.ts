@@ -13,7 +13,6 @@ import { RoleUser } from 'src/core/models/role';
 })
 export class SignUpComponent {
   signUpForm: FormGroup;
-  roles = Object.values(RoleUser);
 
   constructor(
     private authService: AuthService,

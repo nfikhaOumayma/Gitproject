@@ -1,0 +1,45 @@
+<p-toast></p-toast> <!-- PrimeNG Toast for notifications -->
+
+<form [formGroup]="userForm" (ngSubmit)="createUser()">
+  <div>
+    <label for="name">Name:</label>
+    <input formControlName="name" id="name" />
+  </div>
+  
+  <div>
+    <label for="username">Username:</label>
+    <input formControlName="username" id="username" />
+  </div>
+  
+  <div>
+    <label for="email">Email:</label>
+    <input formControlName="email" id="email" type="email" />
+  </div>
+  
+  <div>
+    <label for="password">Password:</label>
+    <input formControlName="password" id="password" type="password" />
+  </div>
+  
+  <div>
+    <label for="address">Address:</label>
+    <input formControlName="address" id="address" />
+  </div>
+  
+  <div>
+    <label for="number">Number:</label>
+    <input formControlName="number" id="number" type="number" />
+  </div>
+  
+  <div>
+    <label>Role:</label>
+    <p-dropdown 
+      [options]="roles" 
+      optionLabel="roleName" 
+      formControlName="roles"
+      placeholder="Select Role">
+    </p-dropdown>
+  </div>
+  
+  <button type="submit">Create User</button>
+</form>

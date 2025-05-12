@@ -21,9 +21,12 @@ import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { LogInComponent } from './log-in/log-in.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth-interceptor.service'; // Update the path as needed
 
 import { RippleModule } from 'primeng/ripple';
 import { AvatarModule } from 'primeng/avatar';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -52,9 +55,14 @@ import { AvatarModule } from 'primeng/avatar';
     ConfirmDialogModule,
     SideBarComponent,
     RippleModule,   
-    AvatarModule
+    AvatarModule,
+    CommonModule 
   ],
-  providers: [MessageService],
+  providers: [
+    MessageService, 
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],    
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
