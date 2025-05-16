@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
 import { Observable, tap } from 'rxjs';
 import { JwtResponse } from 'src/core/models/jwt-response';
 import { User } from 'src/core/models/user';
@@ -41,4 +42,32 @@ export class AuthService {
   getToken(): string | null {
     return localStorage.getItem('Token');
 }
+
+
+
+
+decodeToken(token: string) {
+  try {
+    const decoded: any = jwtDecode(token);
+    console.log('Decoded token:', decoded); // Log the decoded token
+    return decoded; 
+  } catch (error) {
+    console.error('Invalid token', error);
+    return null;
+  }
+}
+
+getUserInfo(token: string) {
+  const decodedToken = this.decodeToken(token);
+  if (decodedToken) {
+    return {
+      username: decodedToken.sub, // Username
+      email: decodedToken.email, // Email from claims
+      roles: decodedToken.roles || [], // Roles from claims
+      id: decodedToken.id, // Ensure this is included if applicable
+    };
+  }
+  return null;
+}
+
 }

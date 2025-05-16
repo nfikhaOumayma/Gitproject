@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 import { AuthService } from 'src/core/services/auth.service';
 
 
@@ -7,15 +8,33 @@ import { AuthService } from 'src/core/services/auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+  constructor(private router: Router) {}
 
-  constructor(private authService: AuthService, private router: Router) {}
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
+    const token = localStorage.getItem('Token');
 
-  canActivate(): boolean {
-    const isLoggedIn = this.authService.getToken() !== null; 
-    if (!isLoggedIn) {
-      this.router.navigate(['/login']); 
-      return false;
+    if (token) {
+      try {
+        const decoded: any = jwtDecode(token);
+        console.log('Decoded token:', decoded); // Log the decoded token
+
+        // Check if roles exist and include 'ADMIN'
+        const roles = decoded.roles || [];
+        console.log('Roles:', roles);
+
+        if (roles.includes('ADMIN')) {
+          return true; // Allow access to the route
+        }
+      } catch (error) {
+        console.error('Token decoding failed:', error);
+      }
     }
-    return true; 
+
+    // Redirect if not authorized
+    this.router.navigate(['/login']);
+    return false; // Prevent access
   }
 }

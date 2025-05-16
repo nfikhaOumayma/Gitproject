@@ -6,6 +6,9 @@ import { AuthService, LogIn } from '../../../core/services/auth.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CommonModule } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
+import { Token } from '@angular/compiler';
+import { JwtResponse } from 'src/core/models/jwt-response';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -23,11 +26,14 @@ imports: [
 export class LogInComponent {
 
   loginForm: FormGroup;
+  userInfo: any;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router // Add Router here
+
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -39,14 +45,24 @@ export class LogInComponent {
     this.loading = true;
     if (this.loginForm.valid) {
       const loginData: LogIn = this.loginForm.value;
-      
+  
       this.authService.signIn(loginData).subscribe({
-        next: (response) => {
+        next: (response: JwtResponse) => {
           this.loading = false;
+          console.log('Login response:', response); // Log the response
+
+          localStorage.setItem('Token', response.token); // Store the received token
+          
+          this.userInfo = this.authService.getUserInfo(response.token); // Get user info from the token
+          console.log(this.userInfo); // Log the user info
           this.messageService.add({ severity: 'success', summary: 'Login Successful', detail: 'Welcome!' });
+          
+          // Navigate to /createUser after successful login
+          this.router.navigate(['/createUser']);
         },
         error: () => {
           this.messageService.add({ severity: 'error', summary: 'Login Failed', detail: 'Invalid credentials!' });
+          this.loading = false;
         }
       });
     } else {
@@ -56,4 +72,7 @@ export class LogInComponent {
       this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Form is invalid!' });
     }
   }
+
+
+  
 }
