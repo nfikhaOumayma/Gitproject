@@ -20,18 +20,20 @@ import { PasswordModule } from 'primeng/password';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { LogInComponent } from './components/log-in/log-in.component';
-import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { navbarComponent } from './components/navbar/navbar.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../core/services/auth-interceptor.service'; // Update the path as needed
 
 import { RippleModule } from 'primeng/ripple';
 import { AvatarModule } from 'primeng/avatar';
 import { CommonModule } from '@angular/common';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
+    
     // LogInComponent
   ],
   imports: [
@@ -53,7 +55,7 @@ import { CommonModule } from '@angular/common';
     PasswordModule,
     DialogModule,
     ConfirmDialogModule,
-    SideBarComponent,
+    navbarComponent,
     RippleModule,   
     AvatarModule,
     CommonModule,

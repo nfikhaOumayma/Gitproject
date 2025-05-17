@@ -9,12 +9,12 @@ import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-side-bar',
-  templateUrl: './side-bar.component.html',
-  styleUrls: ['./side-bar.component.css'],
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css'],
   standalone: true,
   imports: [MenubarModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, CommonModule]
 })
-export class SideBarComponent {
+export class navbarComponent {
   items: MenuItem[] | undefined;
 
     ngOnInit() {
