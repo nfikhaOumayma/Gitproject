@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { User } from 'src/core/models/user';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { RoleUser } from 'src/core/models/role';
 
 @Component({
@@ -13,7 +13,6 @@ import { RoleUser } from 'src/core/models/role';
 })
 export class SignUpComponent {
   signUpForm: FormGroup;
-  roles = Object.values(RoleUser);
 
   constructor(
     private authService: AuthService,
