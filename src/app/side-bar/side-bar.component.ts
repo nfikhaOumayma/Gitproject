@@ -70,7 +70,6 @@ export class SideBarComponent {
             {
                 label: 'Contact',
                 icon: 'pi pi-envelope',
-                badge: '3'
             }
         ];
     }

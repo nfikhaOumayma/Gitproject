@@ -5,12 +5,11 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="space-y-6">
         <div
-          class="p-field flex items-center border border-gray-300 rounded-lg focus-within:border-orange-500 hover:border-orange-500"
+          class="p-field flex items-center border border-gray-300 rounded-lg hover:border-orange-500 focus-within:border-blue-500"
         >
-          <i class="pi pi-envelope text-blue-500 text-2xl p-2"></i>
+          <i class="pi pi-envelope text-orange-500 text-2xl p-2"></i>
           <input
             id="email"
-            pInputText
             formControlName="email"
             class="w-full p-2 focus:outline-none rounded-lg"
             placeholder="Enter your email"
@@ -19,12 +18,11 @@
         </div>
 
         <div
-          class="p-field flex items-center border border-gray-300 rounded-lg focus-within:border-orange-500 hover:border-orange-500"
+          class="p-field flex items-center border border-gray-300 rounded-lg hover:border-orange-500 focus-within:border-blue-500"
         >
-          <i class="pi pi-lock text-blue-500 text-2xl p-2"></i>
+          <i class="pi pi-lock text-orange-500 text-2xl p-2"></i>
           <input
             id="password"
-            pInputText
             formControlName="password"
             type="password"
             class="w-full p-2 focus:outline-none rounded-lg"
