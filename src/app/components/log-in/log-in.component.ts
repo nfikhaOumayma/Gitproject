@@ -48,13 +48,13 @@ export class LogInComponent {
   
       this.authService.signIn(loginData).subscribe({
         next: (response: JwtResponse) => {
-          this.loading = false;
-          console.log('Login response:', response); // Log the response
+          // this.loading = false;
+          // console.log('Login response:', response); 
 
-          localStorage.setItem('Token', response.token); // Store the received token
+          // localStorage.setItem('Token', response.token); 
           
-          this.userInfo = this.authService.getUserInfo(response.token); // Get user info from the token
-          console.log(this.userInfo); // Log the user info
+          // this.userInfo = this.authService.getUserInfo(response.token); 
+          // console.log(this.userInfo);
           this.messageService.add({ severity: 'success', summary: 'Login Successful', detail: 'Welcome!' });
           
           // Navigate to /createUser after successful login

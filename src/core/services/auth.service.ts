@@ -15,11 +15,13 @@ export interface LogIn {
 })
 export class AuthService {
 
-  constructor(private http : HttpClient ) { }
   private apiUrl = 'http://localhost:8088/api/auth';
-  private apiUrl2 = '  http://localhost:8088/api/auth/signup/employee';
+  private apiUrl2 = 'http://localhost:8088/api/auth/signup/employee';
+  private decodedRoles: string[] = []; // 🔵 Global roles list
 
-  SignUpAdmin(user : User):Observable<User>{
+  constructor(private http: HttpClient) { }
+
+  SignUpAdmin(user: User): Observable<User> {
     return this.http.post<User>('http://localhost:8088/api/auth/signupadmin', user);
   }
 
@@ -31,43 +33,63 @@ export class AuthService {
       })
     });
   }
+
   signIn(login: LogIn): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(`${this.apiUrl}/signIn`, login).pipe(
       tap(response => {
-        // Handle the JWT here (e.g., store it in local storage)
         localStorage.setItem('Token', response.token);
+        this.decodeAndStoreRoles(response.token); // 🔵 Decode once and store roles
       })
     );
   }
+
   getToken(): string | null {
     return localStorage.getItem('Token');
-}
+  }
 
+  decodeToken(token: string) {
+    try {
+      const decoded: any = jwtDecode(token);
+      return decoded;
+    } catch (error) {
+      console.error('Invalid token', error);
+      return null;
+    }
+  }
 
+  // 🔵 Decode token once and extract roles
+  private decodeAndStoreRoles(token: string): void {
+    const decoded = this.decodeToken(token);
+    if (decoded && decoded.roles) {
+      this.decodedRoles = decoded.roles;
+      console.log('Roles stored:', this.decodedRoles);
+    }
+  }
 
+  // 🔵 Call this on app init (if token exists)
+  initializeRolesFromToken(): void {
+    const token = this.getToken();
+    if (token) {
+      this.decodeAndStoreRoles(token);
+    }
+  }
 
-decodeToken(token: string) {
-  try {
-    const decoded: any = jwtDecode(token);
-    console.log('Decoded token:', decoded); // Log the decoded token
-    return decoded; 
-  } catch (error) {
-    console.error('Invalid token', error);
+  // ✅ Use this method to check admin status from global roles
+  isAdmin(): boolean {
+    return this.decodedRoles.includes('ADMIN');
+  }
+
+  getUserInfo(): any {
+    const token = this.getToken();
+    const decoded = token ? this.decodeToken(token) : null;
+    if (decoded) {
+      return {
+        username: decoded.sub,
+        email: decoded.email,
+        roles: decoded.roles || [],
+        id: decoded.id
+      };
+    }
     return null;
   }
-}
-
-getUserInfo(token: string) {
-  const decodedToken = this.decodeToken(token);
-  if (decodedToken) {
-    return {
-      username: decodedToken.sub, // Username
-      email: decodedToken.email, // Email from claims
-      roles: decodedToken.roles || [], // Roles from claims
-      id: decodedToken.id, // Ensure this is included if applicable
-    };
-  }
-  return null;
-}
-
 }
