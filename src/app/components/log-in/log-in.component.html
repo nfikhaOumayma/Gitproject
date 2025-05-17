@@ -42,8 +42,18 @@
           pButton
           type="submit"
           label="Login"
-          class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
-        ></button>
+          class="w-full  bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+        >LOG IN</button>
+
+        <div class="mt-6 text-center">
+          <button
+          (click)="loginWithGitHub()"
+            class="w-full bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-900 flex items-center justify-center"
+          >
+            <i class="pi pi-github mr-2 text-xl"></i>
+            Se connecter avec GitHub
+          </button>
+        </div>
       </div>
     </form>
   </div>
