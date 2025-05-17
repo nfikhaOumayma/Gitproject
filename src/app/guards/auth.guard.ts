@@ -3,7 +3,6 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 import { jwtDecode } from 'jwt-decode';
 import { AuthService } from 'src/core/services/auth.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -33,8 +32,8 @@ export class AuthGuard implements CanActivate {
       }
     }
 
-    // Redirect if not authorized
-    this.router.navigate(['/login']);
+    // Redirect to NotFoundComponent if not authorized
+    this.router.navigate(['/not-found']);
     return false; // Prevent access
   }
 }
