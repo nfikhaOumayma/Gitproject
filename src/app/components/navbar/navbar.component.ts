@@ -70,7 +70,6 @@ export class navbarComponent {
             {
                 label: 'Contact',
                 icon: 'pi pi-envelope',
-                badge: '3'
             }
         ];
     }
