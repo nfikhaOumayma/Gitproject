@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { AuthService } from 'src/core/services/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
   isAuthenticated: boolean = false; // Track if user is logged in
@@ -15,7 +20,8 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    const token = localStorage.getItem('Token') || this.getSessionTokenFromCookies();
+    const token =
+      localStorage.getItem('accessToken') || this.getSessionTokenFromCookies();
 
     if (token) {
       this.isAuthenticated = true; // Set to true if any valid session token exists
@@ -27,7 +33,7 @@ export class AuthGuard implements CanActivate {
         const roles = decoded.roles || [];
         console.log('Roles:', roles);
 
-        if (roles.includes('ADMIN')) {
+        if (roles.includes('Utilisateur')) {
           return true; // Allow access to the route
         }
       } catch (error) {
