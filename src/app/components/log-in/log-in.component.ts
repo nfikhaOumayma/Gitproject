@@ -55,7 +55,7 @@ export class LogInComponent {
           detail: 'Login successful!',
           life: 3000
         });
-        this.router.navigate(['/createUser']);
+        this.router.navigate(['/home']);
       },
       error: (error) => {
         this.messageService.add({

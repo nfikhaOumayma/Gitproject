@@ -21,7 +21,9 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): boolean {
     const token =
-      localStorage.getItem('accessToken') || this.getSessionTokenFromCookies();
+      localStorage.getItem('accessToken') ||
+      this.getSessionTokenFromCookies() ||
+      localStorage.getItem('Token');
 
     if (token) {
       this.isAuthenticated = true; // Set to true if any valid session token exists
