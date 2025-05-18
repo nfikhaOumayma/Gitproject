@@ -33,8 +33,8 @@ export class AuthGuard implements CanActivate {
         // Check if roles exist and include 'ADMIN'
         const roles = decoded.roles || [];
         console.log('Roles:', roles);
-
-        if (roles.includes('Utilisateur')) {
+        //if (roles.includes('Utilisateur')) {
+        if (roles.includes('ADMIN')) {
           return true; // Allow access to the route
         }
       } catch (error) {
