@@ -1,0 +1,133 @@
+/* GitHub-themed animated background - Enhanced Version */
+.github-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f6f8fa 0%, #ebf0f5 100%);
+    z-index: 0;
+    overflow: hidden;
+  }
+  
+  /* Project board grid - more visible */
+  .grid-lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(to right, #d0d7de 1px, transparent 1px),
+      linear-gradient(to bottom, #d0d7de 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.4;
+  }
+  
+  /* Git branches - much more visible */
+  .git-branches {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .branch {
+    position: absolute;
+    background-color: #0969da; /* GitHub blue */
+    height: 3px;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(9, 105, 218, 0.3);
+  }
+  
+  .main-branch {
+    width: 150%;
+    top: 30%;
+    left: -20%;
+    transform: rotate(5deg);
+    animation: branchFlow 25s linear infinite;
+    opacity: 0.6;
+  }
+  
+  .feature-branch {
+    width: 120%;
+    top: 60%;
+    left: -10%;
+    transform: rotate(-8deg);
+    animation: branchFlow 30s linear infinite reverse;
+    opacity: 0.6;
+    background-color: #8250df; /* Purple for feature branch */
+  }
+  
+  .dev-branch {
+    width: 140%;
+    top: 45%;
+    left: -15%;
+    transform: rotate(2deg);
+    animation: branchFlow 35s linear infinite;
+    opacity: 0.6;
+    background-color: #1a7f37; /* Green for dev branch */
+  }
+  
+  /* Commit dots - more visible and colorful */
+  .git-commits {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .commit {
+    position: absolute;
+    border-radius: 50%;
+    animation: commitPulse 3s ease-in-out infinite;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px currentColor;
+  }
+  
+  /* Different commit colors like GitHub's contribution graph */
+  .commit:nth-child(6n+1) { background-color: #9be9a8; color: #9be9a8; } /* Light green */
+  .commit:nth-child(6n+2) { background-color: #40c463; color: #40c463; } /* Medium green */
+  .commit:nth-child(6n+3) { background-color: #30a14e; color: #30a14e; } /* Dark green */
+  .commit:nth-child(6n+4) { background-color: #216e39; color: #216e39; } /* Darker green */
+  .commit:nth-child(6n+5) { background-color: #d4c5f9; color: #d4c5f9; } /* Light purple */
+  .commit:nth-child(6n) { background-color: #b392f0; color: #b392f0; } /* Purple */
+  
+  /* GitHub logo - more subtle but visible */
+  .git-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40vmin;
+    color: rgba(36, 41, 46, 0.05);
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  .git-logo i {
+    animation: logoPulse 20s ease-in-out infinite;
+  }
+  
+  /* Animations */
+  @keyframes branchFlow {
+    0% { transform: translateX(-20%) rotate(5deg); }
+    100% { transform: translateX(20%) rotate(5deg); }
+  }
+  
+  @keyframes commitPulse {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+    50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.9; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+  }
+  
+  @keyframes logoPulse {
+    0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    50% { transform: translate(-50%, -50%) scale(1.05) rotate(5deg); }
+    100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+  }
+  
+  /* Enhanced login card */
+  .bg-white\/90 {
+    background-color: rgba(255, 255, 255, 0.93);
+  }
+  
+  .backdrop-blur-md {
+    backdrop-filter: blur(8px);
+  }
