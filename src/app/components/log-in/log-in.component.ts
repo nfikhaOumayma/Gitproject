@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { AuthService, LogIn } from '../../../core/services/auth.service';
@@ -20,9 +20,10 @@ import { Router } from '@angular/router';
   ],
   standalone: true,
 })
-export class LogInComponent {
+export class LogInComponent implements OnInit {
   loginForm: FormGroup;
   loading: boolean = false;
+  commits: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -36,8 +37,22 @@ export class LogInComponent {
     });
   }
 
+  ngOnInit() {
+    this.generateCommits();
+  }
+
+  generateCommits() {
+    // Generate random commit positions for animation
+    for (let i = 0; i < 15; i++) {
+      this.commits.push({
+        left: Math.random() * 100 + '%',
+        top: Math.random() * 100 + '%',
+        size: Math.random() * 10 + 5 + 'px'
+      });
+    }
+  }
+
   onSubmit() {
-    // Mark all fields as touched to show validation messages
     this.loginForm.markAllAsTouched();
 
     if (this.loginForm.invalid) {
@@ -73,11 +88,9 @@ export class LogInComponent {
   }
 
   loginWithGitHub() {
-    // This is a direct redirect, no form validation needed
     window.location.href = 'http://localhost:8088/oauth/github/login';
   }
 
-  // Helper methods for template
   isFieldInvalid(field: string): boolean {
     const formField = this.loginForm.get(field);
     return formField ? formField.invalid && formField.touched : false;
