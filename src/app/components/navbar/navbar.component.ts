@@ -8,7 +8,7 @@ import { RippleModule } from 'primeng/ripple';
 import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-side-bar',
+  selector: 'app-nav-bar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
   standalone: true,
