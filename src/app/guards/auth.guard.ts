@@ -24,7 +24,6 @@ export class AuthGuard implements CanActivate {
       localStorage.getItem('accessToken') ||
       this.getSessionTokenFromCookies() ||
       localStorage.getItem('Token');
-
     if (token) {
       this.isAuthenticated = true; // Set to true if any valid session token exists
       try {
