@@ -1,60 +1,101 @@
-<p-toast></p-toast>
-<!-- <div class="card flex justify-content-center">
-  <p-progressSpinner *ngIf="loading"
-      styleClass="w-4rem h-4rem" 
-      strokeWidth="5" 
-      fill="var(--surface-ground)" 
-      animationDuration=".5s" />
-</div> -->
+<p-toast position="top-center"></p-toast>
+
 <div class="flex justify-center items-center min-h-screen bg-gray-100">
-  <div class="bg-white shadow-lg rounded-lg p-8 w-96">
-    <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="space-y-6">
-        <div
-          class="p-field flex items-center border border-gray-300 rounded-lg hover:border-orange-500 focus-within:border-blue-500"
-        >
-          <i class="pi pi-envelope text-orange-500 text-2xl p-2"></i>
+  <div class="bg-white shadow-xl rounded-xl p-8 w-full max-w-md">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h1>
+      <p class="text-gray-600">Sign in to access your account</p>
+    </div>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i class="pi pi-envelope text-gray-400"></i>
+          </div>
           <input
             id="email"
+            type="email"
             formControlName="email"
-            class="w-full p-2 focus:outline-none rounded-lg"
-            placeholder="Enter your email"
-            required
+            class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="your@email.com"
+            [ngClass]="{
+              'border-red-500': loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+            }"
           />
         </div>
-
-        <div
-          class="p-field flex items-center border border-gray-300 rounded-lg hover:border-orange-500 focus-within:border-blue-500"
-        >
-          <i class="pi pi-lock text-orange-500 text-2xl p-2"></i>
-          <input
-            id="password"
-            formControlName="password"
-            type="password"
-            class="w-full p-2 focus:outline-none rounded-lg"
-            placeholder="Enter your password"
-            required
-          />
-        </div>
-
-        <button
-          pButton
-          type="submit"
-          label="Login"
-          class="w-full  bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
-        >LOG IN</button>
-
-        <div class="mt-6 text-center">
-          <button
-          (click)="loginWithGitHub()"
-            class="w-full bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-900 flex items-center justify-center"
-          >
-            <i class="pi pi-github mr-2 text-xl"></i>
-            Se connecter avec GitHub
-          </button>
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-red-500 text-sm mt-1">
+          <span *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</span>
+          <span *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email</span>
         </div>
       </div>
+
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i class="pi pi-lock text-gray-400"></i>
+          </div>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="••••••••"
+            [ngClass]="{
+              'border-red-500': loginForm.get('password')?.invalid && loginForm.get('password')?.touched
+            }"
+          />
+        </div>
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-red-500 text-sm mt-1">
+          Password is required
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <input id="remember-me" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+          <label for="remember-me" class="ml-2 block text-sm text-gray-700">Remember me</label>
+        </div>
+        <a href="#" class="text-sm text-blue-600 hover:text-blue-500">Forgot password?</a>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="loading"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition duration-200 flex justify-center items-center"
+      >
+        <span *ngIf="!loading">Sign in</span>
+        <p-progressSpinner *ngIf="loading" styleClass="w-6 h-6" strokeWidth="5" class="ml-2"></p-progressSpinner>
+      </button>
     </form>
+
+    <div class="mt-6">
+      <div class="relative">
+        <div class="absolute inset-0 flex items-center">
+          <div class="w-full border-t border-gray-300"></div>
+        </div>
+        <div class="relative flex justify-center text-sm">
+          <span class="px-2 bg-white text-gray-500">Or continue with</span>
+        </div>
+      </div>
+
+      <div class="mt-6 grid grid-cols-1 gap-3">
+        <button
+          (click)="loginWithGitHub()"
+          type="button"
+          class="w-full inline-flex justify-center items-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          <i class="pi pi-github text-xl mr-2"></i>
+          Sign in with GitHub
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-6 text-center text-sm">
+      <span class="text-gray-600">Don't have an account? </span>
+      <a href="#" class="text-blue-600 hover:text-blue-500 font-medium">Sign up</a>
+    </div>
   </div>
 </div>

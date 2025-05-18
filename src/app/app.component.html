@@ -1,5 +1,6 @@
-
-<app-side-bar></app-side-bar>
+<ng-container *ngIf="authGuard.isAuthenticated">
+  <app-side-bar></app-side-bar>
+</ng-container>
 <router-outlet></router-outlet>
 
 
