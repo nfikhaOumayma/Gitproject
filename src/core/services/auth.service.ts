@@ -92,4 +92,14 @@ export class AuthService {
     }
     return null;
   }
+  getUserRoles(): string[] {
+    const token = this.getToken();
+    if (token) {
+      const decoded = this.decodeToken(token);
+      if (decoded && decoded.roles) {
+        return decoded.roles;
+      }
+    }
+    return [];
+  }
 }

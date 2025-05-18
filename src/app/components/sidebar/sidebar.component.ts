@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RoleUser } from 'src/core/models/role';
 import { AuthService } from 'src/core/services/auth.service';
 
 @Component({
@@ -9,46 +10,39 @@ import { AuthService } from 'src/core/services/auth.service';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+  roles: string[] = [];
   menuItems: { label: string; link: string }[] = [];
+
+  roleMenus = {
+    ADMIN: [
+      { label: 'Dashboard', link: '/admin/dashboard' },
+      { label: 'Users', link: '/admin/users' },
+    ],
+    EMPLOYEE: [
+      { label: 'Tasks', link: '/employee/tasks' },
+      { label: 'Profile', link: '/employee/profile' },
+    ],
+    GUEST: [
+      { label: 'Login', link: '/login' },
+      { label: 'Register', link: '/register' },
+    ]
+  };
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    const token = this.authService.getToken();
+    // Initialize roles from token (optional, if you call it somewhere else on app startup)
+    this.authService.initializeRolesFromToken();
 
-    if (token) {
-      const userInfo = this.authService.getUserInfo(token);
+    // Get roles from AuthService
+    this.roles = this.authService.getUserRoles();
 
-      if (userInfo) {
-        this.generateMenuItems(userInfo.roles);
-      }
+    // Choose menu based on roles priority
+    if (this.roles.includes('ADMIN')) {
+      this.menuItems = this.roleMenus.ADMIN;
+    } else if (this.roles.includes('EMPLOYEE')) {
+      this.menuItems = this.roleMenus.EMPLOYEE;
+    } else {
+      this.menuItems = this.roleMenus.GUEST;
     }
-  }
-
-  generateMenuItems(roles: string[]): void {
-    const roleBasedMenu = {
-      ADMIN: [
-        { label: 'Dashboard', link: '/admin/dashboard' },
-        { label: 'Manage Users', link: '/admin/users' },
-        { label: 'Reports', link: '/admin/reports' }
-      ],
-      EMPLOYEE: [
-        { label: 'Profile', link: '/employee/profile' },
-        { label: 'Tasks', link: '/employee/tasks' },
-        { label: 'Leave Requests', link: '/employee/leaves' }
-      ],
-      GUEST: [
-        { label: 'Home', link: '/guest/home' },
-        { label: 'About Us', link: '/guest/about' },
-        { label: 'Contact', link: '/guest/contact' }
-      ]
-    };
-
-    // Dynamically add menu items based on roles
-    roles.forEach((role) => {
-      if (roleBasedMenu[role]) {
-        this.menuItems.push(...roleBasedMenu[role]);
-      }
-    });
-  }
-}
+  } }

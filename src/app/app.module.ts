@@ -59,7 +59,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     RippleModule,   
     AvatarModule,
     CommonModule,
-    LogInComponent
+    LogInComponent,
+    
   ],
   providers: [
     MessageService, 
