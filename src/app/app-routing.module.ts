@@ -7,6 +7,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { OAuthCallbackComponent } from './components/oauth-callback-component/oauth-callback-component.component';
 import { HomeComponent } from './components/home/home.component';
+import { OTPComponent } from './components/otp/otp.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'oauth-callback', component: OAuthCallbackComponent },
   { path: 'home', component: HomeComponent ,canActivate: [AuthGuard],  },
   { path: 'not-found', component: NotFoundComponent }, // Add this route
+  { path: 'verification/:email', component: OTPComponent },
   { path: '**', redirectTo: '/not-found' }, // Wildcard route for undefined paths
 ];
 
